@@ -1,5 +1,6 @@
 import os
 import json
+from turtle import position
 
 # get current working directory path
 cwd_path = os.getcwd()
@@ -24,10 +25,20 @@ def read_data(file_name : str, field):
         return sequence[field]
 
 
+def linear_search(sequention : str, number : int):
+    search_results_dict = {"positions":[], "count":0}
+    for index,item in enumerate(sequention):
+        if item == number:
+            search_results_dict["positions"].append(index)
+            search_results_dict["count"] += 1
+    return search_results_dict
+
+
 
 def main():
     sequential_data = read_data("sequential.json","unordered_numbers")
-    print(sequential_data)
+    # print(sequential_data)
+    print(linear_search(sequential_data, 0))
 
 if __name__ == '__main__':
     main()
