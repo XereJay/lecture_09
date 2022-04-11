@@ -47,16 +47,39 @@ def pattern_search(sequence : str, pattern : str):
     return pattern_indices
 
 
+def binary_search(array : List[int], number):
+    # print(array)
+    left_index = 0
+    right_index = len(array) - 1
+    middle_index = len(array)//2 - 1 +len(array)%2
+
+    nr_of_iter = 0
+    while nr_of_iter <len(array):
+        if array[middle_index] == number:
+            return middle_index
+        elif array[middle_index] > number:
+            right_index = middle_index
+            middle_index = right_index//2
+        else:
+            left_index = middle_index
+            middle_index = middle_index + (right_index-left_index)//2
+        
+        nr_of_iter +=1
+    else:
+        return array[-1]
+
+
 
 
 
 def main():
-    sequential_data = read_data("sequential.json","unordered_numbers")
+    # sequential_data = read_data("sequential.json","unordered_numbers")
     # print(sequential_data)
     # print(linear_search(sequential_data, 0))
-    DNA_data = read_data("sequential.json","dna_sequence")
-    print(pattern_search(DNA_data,"ATA"))
-
+    # DNA_data = read_data("sequential.json","dna_sequence")
+    # print(pattern_search(DNA_data,"ATA"))
+    sorted_list = read_data("sequential.json", "ordered_numbers")
+    print(binary_search(sorted_list,120))
 
 if __name__ == '__main__':
     main()
